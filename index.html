@@ -12,6 +12,20 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Flipzy — Your Reading Companion" />
   <meta name="twitter:description" content="Help kids fall in love with reading with playful audio support and a simple experience parents can understand in seconds." />
+
+  <!-- TODO: Replace PLACEHOLDER with your Bing Webmaster Tools verification token -->
+  <meta name="msvalidate.01" content="62FEFF2267FC1A6A2EF8B31693830CEC" />
+
+  <!-- Google Analytics 4 — script loaded dynamically after cookie consent -->
+  <!-- GA4 Measurement ID: G-MS43H64P1V -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+  </script>
+
+  <!-- Microsoft Clarity — loaded dynamically after cookie consent -->
+  <!-- Clarity Project ID: w8do0g7x8k -->
+
   <style>
     :root {
       --bg: #fffaf5;
@@ -459,11 +473,14 @@
             <h2 class="section-title">Join Flipzy early</h2>
             <p class="section-copy">Be first to hear when Flipzy launches and get updates as the product develops.</p>
           </div>
-          <form class="cta-form" onsubmit="event.preventDefault(); alert('Thanks — this local demo form is working. Connect it to your email tool when you are ready.');">
-            <input class="input" type="text" placeholder="Your name" aria-label="Your name" />
-            <input class="input" type="email" placeholder="Your email" aria-label="Your email" required />
-            <button class="btn btn-primary" type="submit">Join the waitlist</button>
-            <div class="helper">No spam. Just launch updates, early access, and product news.</div>
+          <form id="waitlistForm" class="cta-form">
+            <input class="input" type="text" name="name" placeholder="Your name" aria-label="Your name" />
+            <input class="input" type="email" name="email" placeholder="Your email" aria-label="Your email" required />
+            <input type="hidden" name="utm_source" />
+            <input type="hidden" name="utm_medium" />
+            <input type="hidden" name="utm_campaign" />
+            <button class="btn btn-primary" type="submit" id="waitlistBtn">Join the waitlist</button>
+            <div class="helper" id="waitlistMsg">No spam. Just launch updates, early access, and product news.</div>
           </form>
         </div>
       </div>
@@ -476,8 +493,151 @@
         <img src="assets/logo.png" alt="Flipzy logo" />
         <span>Flipzy — Your Reading Companion</span>
       </div>
-      <div>© 2026 Flipzy. All rights reserved.</div>
+      <div>© 2026 Flipzy. All rights reserved. · <a href="javascript:revokeCookies()" style="color:var(--orange);text-decoration:underline;">Cookie settings</a></div>
     </div>
   </footer>
+
+  <!-- GDPR Cookie Consent Banner -->
+  <div id="cookieConsent" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;background:#1f2937;color:#fff;padding:16px 24px;font-size:14px;">
+    <div style="max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+      <p style="margin:0;line-height:1.6;">We use cookies for analytics (Google Analytics) to improve your experience. <a href="#" style="color:#ff6a1a;text-decoration:underline;">Learn more</a></p>
+      <div style="display:flex;gap:10px;flex-shrink:0;">
+        <button onclick="acceptCookies()" style="background:#ff6a1a;color:#fff;border:none;border-radius:12px;padding:10px 20px;font-weight:700;font-size:14px;cursor:pointer;">Accept</button>
+        <button onclick="declineCookies()" style="background:transparent;color:#fff;border:1px solid #667085;border-radius:12px;padding:10px 20px;font-weight:700;font-size:14px;cursor:pointer;">Decline</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── UTM Capture (no localStorage until consent — read from URL directly) ──
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign'];
+      utmKeys.forEach(function(key) {
+        var val = params.get(key) || '';
+        document.querySelectorAll('input[name="' + key + '"]').forEach(function(el) {
+          el.value = val;
+        });
+      });
+    })();
+
+    // ── GDPR Cookie Consent ──
+    var GA4_ID = 'G-MS43H64P1V';
+    var CLARITY_ID = 'w8do0g7x8k';
+
+    (function() {
+      var consent = localStorage.getItem('cookie_consent');
+      if (consent === 'accepted') {
+        enableAnalytics();
+      } else if (consent !== 'declined') {
+        document.getElementById('cookieConsent').style.display = 'block';
+      }
+    })();
+
+    function acceptCookies() {
+      localStorage.setItem('cookie_consent', 'accepted');
+      document.getElementById('cookieConsent').style.display = 'none';
+      enableAnalytics();
+    }
+
+    function declineCookies() {
+      localStorage.setItem('cookie_consent', 'declined');
+      document.getElementById('cookieConsent').style.display = 'none';
+    }
+
+    function revokeCookies() {
+      localStorage.removeItem('cookie_consent');
+      window.location.reload();
+    }
+
+    function enableAnalytics() {
+      // Load GA4 dynamically
+      var gtagScript = document.createElement('script');
+      gtagScript.async = true;
+      gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+      document.head.appendChild(gtagScript);
+      gtagScript.onload = function() {
+        gtag('consent', 'default', { 'analytics_storage': 'granted' });
+        gtag('config', GA4_ID);
+      };
+
+      // Load Clarity dynamically
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window,document,"clarity","script",CLARITY_ID);
+
+      // Persist UTM params now that consent is granted
+      var params = new URLSearchParams(window.location.search);
+      ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function(key) {
+        var val = params.get(key);
+        if (val) localStorage.setItem(key, val);
+      });
+    }
+
+    // ── Waitlist Form Handler ──
+    // TODO: Replace WORKER_URL with your deployed Cloudflare Worker URL
+    var WORKER_URL = 'https://flipzy-mailerlite-proxy.valerogian.workers.dev';
+
+    document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var form = e.target;
+      var btn = document.getElementById('waitlistBtn');
+      var msg = document.getElementById('waitlistMsg');
+      var name = form.querySelector('input[name="name"]').value.trim();
+      var email = form.querySelector('input[name="email"]').value.trim();
+
+      if (!email) return;
+
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+      msg.textContent = '';
+      msg.style.color = '';
+
+      fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          name: name,
+          fields: {
+            utm_source: form.querySelector('input[name="utm_source"]').value,
+            utm_medium: form.querySelector('input[name="utm_medium"]').value,
+            utm_campaign: form.querySelector('input[name="utm_campaign"]').value
+          },
+          form_type: 'waitlist_signup'
+        })
+      })
+      .then(function(res) {
+        if (!res.ok) throw new Error('Server error');
+        return res.json();
+      })
+      .then(function() {
+        msg.textContent = '🎉 You\'re on the list! We\'ll be in touch.';
+        msg.style.color = '#26a6a1';
+        btn.textContent = 'You\'re in!';
+        form.reset();
+        // GA4 events
+        if (typeof gtag === 'function') {
+          gtag('event', 'form_submission', {
+            form_id: 'waitlistForm',
+            form_name: 'Flipzy Waitlist',
+            form_destination: WORKER_URL
+          });
+          gtag('event', 'generate_lead', {
+            currency: 'USD',
+            value: 1.0
+          });
+        }
+      })
+      .catch(function() {
+        msg.textContent = 'Something went wrong. Please try again.';
+        msg.style.color = '#ef4444';
+        btn.disabled = false;
+        btn.textContent = 'Join the waitlist';
+      });
+    });
+  </script>
 </body>
 </html>
