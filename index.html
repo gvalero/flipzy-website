@@ -13,18 +13,60 @@
   <meta name="twitter:title" content="Flipzy — Your Reading Companion" />
   <meta name="twitter:description" content="Help kids fall in love with reading with playful audio support and a simple experience parents can understand in seconds." />
 
-  <!-- TODO: Replace PLACEHOLDER with your Bing Webmaster Tools verification token -->
   <meta name="msvalidate.01" content="62FEFF2267FC1A6A2EF8B31693830CEC" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://flipzyreads.com/" />
+  <link rel="icon" type="image/png" href="assets/fox.png" />
+  <meta property="og:image" content="https://flipzyreads.com/assets/profile-picture.png" />
+  <meta name="twitter:image" content="https://flipzyreads.com/assets/profile-picture.png" />
+  <meta name="twitter:image:alt" content="Flipzy the fox mascot reading a book" />
 
-  <!-- Google Analytics 4 — script loaded dynamically after cookie consent -->
-  <!-- GA4 Measurement ID: G-MS43H64P1V -->
+  <!-- Google Analytics 4 — loaded dynamically after cookie consent (ID: G-MS43H64P1V) -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
   </script>
 
-  <!-- Microsoft Clarity — loaded dynamically after cookie consent -->
-  <!-- Clarity Project ID: w8do0g7x8k -->
+  <!-- Microsoft Clarity — loaded dynamically after cookie consent (ID: w8do0g7x8k) -->
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Flipzy",
+        "url": "https://flipzyreads.com",
+        "logo": "https://flipzyreads.com/assets/logo.png",
+        "description": "Flipzy helps kids fall in love with reading through interactive, playful story experiences.",
+        "sameAs": [
+          "https://www.tiktok.com/@flipzyreads",
+          "https://www.instagram.com/flipzyreads",
+          "https://www.youtube.com/@flipzyreads"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "hello@flipzyreads.com",
+          "contactType": "customer support"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "name": "Flipzy",
+        "url": "https://flipzyreads.com"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://flipzyreads.com/",
+        "name": "Flipzy — Your Reading Companion",
+        "description": "Help kids fall in love with reading with playful audio support and a simple experience parents can understand in seconds.",
+        "url": "https://flipzyreads.com/",
+        "isPartOf": { "@id": "https://flipzyreads.com" }
+      }
+    ]
+  }
+  </script>
 
   <style>
     :root {
@@ -577,7 +619,6 @@
     }
 
     // ── Waitlist Form Handler ──
-    // TODO: Replace WORKER_URL with your deployed Cloudflare Worker URL
     var WORKER_URL = 'https://flipzy-mailerlite-proxy.valerogian.workers.dev';
 
     document.getElementById('waitlistForm').addEventListener('submit', function(e) {

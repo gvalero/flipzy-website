@@ -1,0 +1,5 @@
+# Flipzy — flipzyreads.com
+User-agent: *
+Allow: /
+
+Sitemap: https://flipzyreads.com/sitemap.xml

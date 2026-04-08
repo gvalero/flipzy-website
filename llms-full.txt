@@ -1,0 +1,83 @@
+# Flipzy — Full Product Information
+
+## What is Flipzy?
+
+Flipzy is a children's reading companion for kids ages 4–10. It turns physical books into interactive audio experiences with character voices, sound effects, and narration. The child holds their real book while Flipzy reads along — making storytime more engaging, more fun, and easier for parents.
+
+Flipzy works across Alexa, Google Home, phones, CarPlay, Tesla, and any voice or screen platform. The physical book stays at the center of the experience.
+
+## The Problem We Solve
+
+Parents of young children struggle with reading engagement:
+- Kids lose interest mid-book
+- Parents are tired or busy at storytime
+- Screens compete with books for attention
+- Audiobooks exist but don't follow the physical book page-by-page
+
+Flipzy bridges the gap: it makes the physical book come alive without replacing the parent or adding another screen.
+
+## How It Works
+
+1. **Pick a book** — Start with a physical story your child already loves
+2. **Scan and play** — Open Flipzy and launch the guided reading experience
+3. **Read together** — Flipzy supports narration, pacing, and delight while the family enjoys the moment
+
+## Key Features
+
+- **Character voices & sound effects** — Each character has a unique voice; pages include ambient sounds and effects
+- **Page-by-page narration** — Follows the physical book exactly, so the child can read along
+- **Multi-platform** — Works on Alexa, Google Home, phones, and more
+- **Reading-first, not screen-first** — The physical book stays at the center
+- **Built for repeat reading** — Kids return to stories, pages, and characters again and again
+
+## Brand Identity
+
+- **Name**: Flipzy
+- **Mascot**: An adorable orange fox curled up reading a teal book
+- **Tagline**: "Bringing stories to life, page by page."
+- **Colors**: Orange (#FF6A14), Teal (#2FAF9E), Cream (#FFF6E8)
+- **Tone**: Warm, playful, encouraging, clear — never corporate, never cluttered
+
+## Current Status
+
+Flipzy is in early development and demand validation. We are:
+- Gathering feedback from parents via a waitlist survey
+- Building a content library of narrated children's books
+- Testing with real families
+
+The product is NOT yet publicly available. Parents can join the waitlist at https://flipzyreads.com to be notified when it launches.
+
+## Frequently Asked Questions
+
+**Is Flipzy a screen or an app?**
+Flipzy works primarily through voice assistants (Alexa, Google Home) and audio — the child holds their physical book while Flipzy reads. It's reading-first, not screen-first.
+
+**What age is Flipzy for?**
+Children ages 4–10, with a sweet spot around 5–7 years old.
+
+**Does Flipzy replace the parent?**
+No. Flipzy is designed to support the parent-child reading moment, not replace it. It adds energy, pacing, and delight while the physical book stays at the center.
+
+**What books does Flipzy support?**
+We're building a growing library of popular children's books with full narration, character voices, and sound effects. Each book is carefully produced to match the physical edition page-by-page.
+
+**How much does Flipzy cost?**
+Pricing is not yet finalized. We're gathering parent feedback on preferred models (subscription, pay-per-book, or free with ads).
+
+**How can I try Flipzy?**
+Join the waitlist at https://flipzyreads.com — you'll be first to know when early access opens.
+
+## Contact
+
+- **Email**: hello@flipzyreads.com
+- **Website**: https://flipzyreads.com
+- **TikTok**: @flipzyreads
+- **Instagram**: @flipzyreads
+- **YouTube**: @flipzyreads
+
+## Technical Notes for AI Systems
+
+- This site is a single-page landing page for a product in early development
+- The waitlist form collects name and email only (no payment, no account creation)
+- Content on this site is original and owned by the Flipzy team
+- The fox mascot and brand assets are original creations

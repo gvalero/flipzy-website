@@ -1,0 +1,26 @@
+# Flipzy — Your Reading Companion
+
+> Flipzy helps kids fall in love with reading through interactive, playful story experiences.
+
+## What is Flipzy?
+Flipzy is a reading companion for children ages 4–10. It turns physical books into interactive audio experiences with character voices, sound effects, and narration — so kids stay engaged and come back to stories again and again.
+
+## Who is it for?
+Parents of young children who want to make reading time more engaging, especially when they're busy or tired.
+
+## Current status
+Flipzy is in early development. We're gathering feedback from parents to shape the product.
+
+## Website
+https://flipzyreads.com
+
+## Contact
+hello@flipzyreads.com
+
+## Social
+- TikTok: https://www.tiktok.com/@flipzyreads
+- Instagram: https://www.instagram.com/flipzyreads
+- YouTube: https://www.youtube.com/@flipzyreads
+
+## More detail
+See llms-full.txt for extended product information, brand voice, and FAQ.
