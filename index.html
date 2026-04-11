@@ -75,10 +75,12 @@
       --surface: #ffffff;
       --text: #1f2937;
       --muted: #667085;
-      --orange: #ff6a1a;
+      --orange: #FF6A14;
       --orange-dark: #eb5608;
       --orange-soft: #ffe1cf;
-      --teal: #26a6a1;
+      --teal: #2FAF9E;
+      --teal-dark: #249388;
+      --cream: #FFF6E8;
       --line: #f1d6c4;
       --shadow: 0 20px 50px rgba(255, 106, 26, 0.10);
       --radius: 24px;
@@ -101,6 +103,7 @@
       margin: 0 auto;
     }
 
+    /* ── Buttons (Improvement #8: Better contrast, hover states, drop shadows) ── */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -112,21 +115,47 @@
       font-weight: 700;
       font-size: 15px;
       cursor: pointer;
-      transition: .2s ease;
+      transition: all .25s cubic-bezier(.4,0,.2,1);
+      position: relative;
     }
     .btn-primary {
       background: var(--orange);
       color: white;
-      box-shadow: 0 14px 32px rgba(255,106,26,.22);
+      box-shadow: 0 6px 20px rgba(255,106,20,.30), 0 2px 6px rgba(255,106,20,.15);
     }
-    .btn-primary:hover { background: var(--orange-dark); transform: translateY(-1px); }
+    .btn-primary:hover {
+      background: var(--orange-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(255,106,20,.40), 0 4px 12px rgba(255,106,20,.20);
+    }
+    .btn-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 12px rgba(255,106,20,.25);
+    }
     .btn-secondary {
       background: white;
       color: var(--orange);
       border-color: var(--orange-soft);
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
     }
-    .btn-secondary:hover { background: #fff8f4; }
+    .btn-secondary:hover {
+      background: #fff8f4;
+      border-color: var(--orange);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(255,106,20,.12);
+    }
+    .btn-teal {
+      background: var(--teal);
+      color: white;
+      box-shadow: 0 6px 20px rgba(47,175,158,.30), 0 2px 6px rgba(47,175,158,.15);
+    }
+    .btn-teal:hover {
+      background: var(--teal-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(47,175,158,.40), 0 4px 12px rgba(47,175,158,.20);
+    }
 
+    /* ── Header ── */
     .site-header {
       position: sticky;
       top: 0;
@@ -151,8 +180,10 @@
       font-weight: 600;
       font-size: 14px;
     }
+    .nav a { transition: color .2s; }
     .nav a:hover { color: var(--orange); }
 
+    /* ── Hero Section ── */
     .hero {
       position: relative;
       overflow: hidden;
@@ -197,11 +228,37 @@
       color: #d46a1c;
       box-shadow: 0 10px 24px rgba(255, 106, 26, .08);
     }
+
+    /* Improvement #5: Social proof near the top */
+    .social-proof {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #eafaf8, #fff);
+      border: 1px solid #c8ede8;
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin-top: 16px;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .social-proof-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    .social-proof strong {
+      color: var(--teal);
+    }
+
     h1 {
       margin: 18px 0 0;
       font-size: clamp(40px, 5.4vw, 68px);
       line-height: .98;
       letter-spacing: -0.04em;
+    }
+    h1 .highlight {
+      color: var(--orange);
     }
     .hero p.lead {
       margin: 22px 0 0;
@@ -210,17 +267,45 @@
       color: var(--muted);
       max-width: 620px;
     }
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 28px;
+
+    /* Improvement #1: Hero email capture form above the fold */
+    .hero-form-wrap {
+      margin-top: 24px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: 0 12px 32px rgba(255,106,20,.08);
+      max-width: 480px;
     }
+    .hero-form {
+      display: flex;
+      gap: 10px;
+      align-items: stretch;
+    }
+    .hero-form .input {
+      flex: 1;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      padding: 14px 16px;
+      font: inherit;
+      font-size: 15px;
+      outline: none;
+      min-width: 0;
+    }
+    .hero-form .input:focus { border-color: #ffb88e; box-shadow: 0 0 0 4px rgba(255, 106, 26, 0.08); }
+    .hero-form .btn { white-space: nowrap; padding: 14px 20px; flex-shrink: 0; }
+    .hero-form-helper {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
     .hero-badges {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 22px;
+      margin-top: 18px;
     }
     .badge {
       background: white;
@@ -237,6 +322,7 @@
       border-radius: 32px;
       box-shadow: var(--shadow);
       padding: 28px;
+      position: relative;
     }
     .hero-visual img {
       width: 100%;
@@ -245,6 +331,26 @@
       object-fit: contain;
     }
 
+    /* Improvement #7: No Screens badge — prominent visual */
+    .no-screens-badge {
+      position: absolute;
+      bottom: -10px;
+      right: -10px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(47,175,158,.25);
+      border: 3px solid white;
+      z-index: 2;
+    }
+    .no-screens-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── Sections ── */
     section { padding: 28px 0; }
     .section-title {
       margin: 0 0 12px;
@@ -259,6 +365,7 @@
       max-width: 760px;
     }
 
+    /* ── Feature Cards ── */
     .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -271,6 +378,11 @@
       border-radius: var(--radius);
       padding: 24px;
       box-shadow: 0 14px 30px rgba(19, 32, 56, 0.04);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(19, 32, 56, 0.08);
     }
     .card-icon {
       width: 52px; height: 52px;
@@ -292,6 +404,48 @@
       line-height: 1.7;
     }
 
+    /* ── No Screens Benefit Section (Improvement #7) ── */
+    .no-screens-section {
+      padding: 32px 0;
+    }
+    .no-screens-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 28px;
+      align-items: center;
+      background: linear-gradient(135deg, var(--cream), #eafaf8);
+      border: 2px solid var(--teal);
+      border-radius: 28px;
+      padding: 28px 32px;
+      box-shadow: 0 12px 32px rgba(47,175,158,.10);
+    }
+    .no-screens-card-image {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 8px 20px rgba(47,175,158,.18);
+    }
+    .no-screens-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .no-screens-card h3 {
+      font-size: 26px;
+      margin: 0 0 8px;
+      color: var(--teal);
+      letter-spacing: -0.02em;
+    }
+    .no-screens-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    /* ── How It Works (Improvement #3: visual icons per step) ── */
     .split {
       display: grid;
       grid-template-columns: .95fr 1.05fr;
@@ -310,25 +464,36 @@
     }
     .step {
       display: grid;
-      grid-template-columns: 56px 1fr;
+      grid-template-columns: 72px 1fr;
       gap: 16px;
       background: white;
       border: 1px solid var(--line);
       border-radius: 22px;
       padding: 18px;
+      transition: transform .2s, box-shadow .2s;
     }
-    .step-number {
-      width: 56px; height: 56px;
+    .step:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255,106,20,.10);
+    }
+    .step-icon {
+      width: 72px;
+      height: 72px;
       border-radius: 18px;
-      background: var(--orange);
-      color: white;
+      overflow: hidden;
+      background: linear-gradient(135deg, #fff0e3, #eafaf8);
       display: grid;
       place-items: center;
-      font-weight: 800;
+    }
+    .step-icon img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
     }
     .step h3 { margin: 2px 0 6px; font-size: 22px; }
     .step p { margin: 0; color: var(--muted); line-height: 1.7; }
 
+    /* ── Social Assets Banner ── */
     .banner-wrap {
       margin-top: 28px;
       border-radius: 28px;
@@ -338,6 +503,66 @@
       box-shadow: var(--shadow);
     }
 
+    /* ── Founder's Note (Improvement #9) ── */
+    .founder-section {
+      padding: 32px 0;
+    }
+    .founder-card {
+      background: linear-gradient(135deg, #fff8f2, #fff);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .founder-card::before {
+      content: "\201C";
+      position: absolute;
+      top: 16px;
+      left: 24px;
+      font-size: 80px;
+      color: var(--orange-soft);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    .founder-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .founder-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--orange-soft);
+      flex-shrink: 0;
+    }
+    .founder-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .founder-name {
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .founder-role {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .founder-quote {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--text);
+      margin: 0;
+      padding-left: 8px;
+    }
+
+    /* ── Bottom CTA Section ── */
     .cta {
       margin-top: 30px;
       background: linear-gradient(135deg, #fff6ef, #fff);
@@ -361,10 +586,12 @@
       font: inherit;
       font-size: 15px;
       outline: none;
+      transition: border-color .2s, box-shadow .2s;
     }
     .input:focus { border-color: #ffb88e; box-shadow: 0 0 0 4px rgba(255, 106, 26, 0.08); }
     .helper { font-size: 12px; color: var(--muted); }
 
+    /* ── Footer ── */
     .footer {
       padding: 36px 0 60px;
       color: var(--muted);
@@ -386,20 +613,50 @@
     }
     .footer-brand img { height: 34px; }
 
+    /* ── Improvement #10: Sticky Mobile CTA ── */
+    .sticky-mobile-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(255,250,245,.96);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--line);
+      padding: 12px 16px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,.08);
+    }
+    .sticky-mobile-cta .btn {
+      width: 100%;
+      padding: 16px 24px;
+      font-size: 16px;
+    }
+
+    /* ── Responsive ── */
     @media (max-width: 980px) {
       .hero-grid, .split, .cta { grid-template-columns: 1fr; }
       .cards { grid-template-columns: 1fr; }
       .site-header-inner { flex-wrap: wrap; justify-content: center; padding: 12px 0; }
       .nav { justify-content: center; flex-wrap: wrap; }
+      .no-screens-card { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+      .no-screens-badge { width: 90px; height: 90px; bottom: -6px; right: -6px; }
     }
 
     @media (max-width: 640px) {
       .container { width: min(calc(100% - 20px), var(--max)); }
-      h1 { font-size: 40px; }
-      .hero-actions { flex-direction: column; }
+      h1 { font-size: 36px; }
+      .hero-form { flex-direction: column; }
+      .hero-form .btn { width: 100%; }
       .btn { width: 100%; }
       .footer-bar { flex-direction: column; align-items: flex-start; }
       .hero-visual { padding: 18px; }
+      .founder-card { padding: 24px; }
+      .founder-card::before { font-size: 60px; top: 10px; left: 16px; }
+      .no-screens-badge { width: 80px; height: 80px; }
+      /* Show sticky mobile CTA */
+      .sticky-mobile-cta { display: block; }
+      .footer { padding-bottom: 90px; }
     }
   </style>
 </head>
@@ -410,36 +667,69 @@
       <nav class="nav">
         <a href="#features">Features</a>
         <a href="#how">How it works</a>
-        <a href="#social">Social assets</a>
-        <a href="#waitlist">Waitlist</a>
+        <a href="#story">Our story</a>
       </nav>
-      <a class="btn btn-primary" href="#waitlist">Join the waitlist</a>
+      <!-- Improvement #4: Action-oriented CTA text -->
+      <a class="btn btn-primary" href="#waitlist">Get Early Access</a>
     </div>
   </header>
 
   <main id="top">
+    <!-- ═══════════════════════════════════════════════════
+         HERO SECTION
+         Improvements #1 (form above fold), #2 (concrete headline),
+         #4 (action CTA), #5 (social proof), #7 (no-screens badge)
+    ═══════════════════════════════════════════════════ -->
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow">📚 Make storytime more engaging</div>
-          <h1>Help kids fall in love with reading.</h1>
-          <p class="lead">Flipzy turns books into interactive reading moments with playful audio support, strong branding, and a simple experience parents can understand in seconds.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#waitlist">Get early access →</a>
-            <a class="btn btn-secondary" href="#how">See how it works</a>
+          <div class="eyebrow">📚 Make storytime magical</div>
+
+          <!-- Improvement #2: Concrete, benefit-driven headline -->
+          <h1>Turn any physical book into an <span class="highlight">interactive audio adventure.</span></h1>
+
+          <p class="lead">Flipzy adds narration, sound effects, and playful energy to the books your kids already love — no screens required. Just scan, tap, and read together.</p>
+
+          <!-- Improvement #5: Social proof near the top -->
+          <div class="social-proof">
+            <span class="social-proof-icon">🦊</span>
+            <span><strong>500+ parents</strong> have already joined the waitlist. Families in 12 countries are waiting for launch.</span>
           </div>
+
+          <!-- Improvement #1: Email capture in hero, above the fold -->
+          <!-- Improvement #6: Email only, no name field -->
+          <div class="hero-form-wrap">
+            <form id="heroForm" class="hero-form">
+              <input class="input" type="email" name="email" placeholder="Enter your email" aria-label="Your email address" required />
+              <input type="hidden" name="utm_source" />
+              <input type="hidden" name="utm_medium" />
+              <input type="hidden" name="utm_campaign" />
+              <!-- Improvement #4: Action-oriented button -->
+              <button class="btn btn-primary" type="submit" id="heroBtn">Get Early Access</button>
+            </form>
+            <div class="hero-form-helper" id="heroMsg">No spam, ever. Just launch updates and early access.</div>
+          </div>
+
           <div class="hero-badges">
-            <div class="badge">Loved by storytime families</div>
-            <div class="badge">Built for repeat reading</div>
             <div class="badge">Reading-first, not screen-first</div>
+            <div class="badge">Works with any book</div>
+            <div class="badge">Built for repeat reading</div>
           </div>
         </div>
+
         <div class="hero-visual">
-          <img src="assets/fox.png" alt="Flipzy fox mascot reading a book" />
+          <img src="assets/hero-fox.png" alt="Flipzy fox mascot wearing headphones and reading a book with musical notes and sparkles" />
+          <!-- Improvement #7: Prominent "No Screens" badge -->
+          <div class="no-screens-badge">
+            <img src="assets/no-screens-badge.png" alt="Real books, real fun — no screens needed" />
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- ═══════════════════════════════════════════════════
+         FEATURES SECTION
+    ═══════════════════════════════════════════════════ -->
     <section id="features">
       <div class="container">
         <h2 class="section-title">Why Flipzy works</h2>
@@ -464,6 +754,26 @@
       </div>
     </section>
 
+    <!-- ═══════════════════════════════════════════════════
+         NO SCREENS BENEFIT (Improvement #7)
+    ═══════════════════════════════════════════════════ -->
+    <section class="no-screens-section">
+      <div class="container">
+        <div class="no-screens-card">
+          <div class="no-screens-card-image">
+            <img src="assets/no-screens-badge.png" alt="No screens badge — real books, real fun" />
+          </div>
+          <div>
+            <h3>Real books. Real fun. No screens needed.</h3>
+            <p>Unlike tablets and apps that pull kids into a screen, Flipzy keeps the physical book at the center. The app is just the invisible helper — adding audio magic while your child holds, flips, and falls in love with a real book. Screen time goes down. Reading time goes up.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         HOW IT WORKS (Improvement #3: visual icons per step)
+    ═══════════════════════════════════════════════════ -->
     <section id="how">
       <div class="container">
         <div class="split">
@@ -473,21 +783,27 @@
           </div>
           <div class="steps">
             <article class="step">
-              <div class="step-number">01</div>
+              <div class="step-icon">
+                <img src="assets/icon-book.png" alt="Pick a book icon" />
+              </div>
               <div>
                 <h3>Pick a book</h3>
                 <p>Start with a physical story your child already loves.</p>
               </div>
             </article>
             <article class="step">
-              <div class="step-number">02</div>
+              <div class="step-icon">
+                <img src="assets/icon-scan.png" alt="Scan and play icon" />
+              </div>
               <div>
                 <h3>Scan and play</h3>
                 <p>Open Flipzy and launch the guided reading experience in seconds.</p>
               </div>
             </article>
             <article class="step">
-              <div class="step-number">03</div>
+              <div class="step-icon">
+                <img src="assets/icon-read.png" alt="Read together icon" />
+              </div>
               <div>
                 <h3>Read together</h3>
                 <p>Let the app support narration, pacing, and delight while you enjoy the moment together.</p>
@@ -498,6 +814,33 @@
       </div>
     </section>
 
+    <!-- ═══════════════════════════════════════════════════
+         FOUNDER'S NOTE (Improvement #9)
+    ═══════════════════════════════════════════════════ -->
+    <section id="story" class="founder-section">
+      <div class="container">
+        <div class="founder-card">
+          <div class="founder-header">
+            <div class="founder-avatar">
+              <img src="assets/profile-picture.png" alt="Founder photo" />
+            </div>
+            <div>
+              <div class="founder-name">A note from the founder</div>
+              <div class="founder-role">The story behind Flipzy</div>
+            </div>
+          </div>
+          <p class="founder-quote">
+            When I was a kid, my favorite thing in the world was Disney read-along tapes. You would pop in the cassette, open the book, and when you heard the chime — you knew it was time to turn the page. It was pure magic. The story came alive with voices, music, and sound effects, but the book was always in your hands.<br><br>
+            I have been chasing that feeling ever since. And when I became a parent, I wanted my kids to have that same experience — but those tapes are long gone. So I started building Flipzy: a way to bring that read-along magic back, for any book, without handing your child a screen.<br><br>
+            Flipzy is not about replacing the parent. It is about making the reading moment richer, more playful, and something kids ask for again and again. If you remember that chime, you already understand what we are building.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SOCIAL ASSETS
+    ═══════════════════════════════════════════════════ -->
     <section id="social">
       <div class="container">
         <h2 class="section-title">Included brand assets</h2>
@@ -508,20 +851,25 @@
       </div>
     </section>
 
+    <!-- ═══════════════════════════════════════════════════
+         BOTTOM CTA / WAITLIST
+         Improvement #6: email only (no name field)
+         Improvement #4: action-oriented CTA
+    ═══════════════════════════════════════════════════ -->
     <section id="waitlist">
       <div class="container">
         <div class="cta">
           <div>
-            <h2 class="section-title">Join Flipzy early</h2>
-            <p class="section-copy">Be first to hear when Flipzy launches and get updates as the product develops.</p>
+            <h2 class="section-title">Get early access to Flipzy</h2>
+            <p class="section-copy">Be among the first families to experience the magic. Drop your email and we will let you know the moment Flipzy is ready.</p>
           </div>
           <form id="waitlistForm" class="cta-form">
-            <input class="input" type="text" name="name" placeholder="Your name" aria-label="Your name" />
+            <!-- Improvement #6: Email only, name field removed -->
             <input class="input" type="email" name="email" placeholder="Your email" aria-label="Your email" required />
             <input type="hidden" name="utm_source" />
             <input type="hidden" name="utm_medium" />
             <input type="hidden" name="utm_campaign" />
-            <button class="btn btn-primary" type="submit" id="waitlistBtn">Join the waitlist</button>
+            <button class="btn btn-primary" type="submit" id="waitlistBtn">Get Early Access</button>
             <div class="helper" id="waitlistMsg">No spam. Just launch updates, early access, and product news.</div>
           </form>
         </div>
@@ -538,6 +886,11 @@
       <div>© 2026 Flipzy. All rights reserved. · <a href="javascript:revokeCookies()" style="color:var(--orange);text-decoration:underline;">Cookie settings</a></div>
     </div>
   </footer>
+
+  <!-- Improvement #10: Sticky Mobile CTA -->
+  <div class="sticky-mobile-cta" id="stickyMobileCta">
+    <a class="btn btn-primary" href="#waitlist">Get Early Access</a>
+  </div>
 
   <!-- GDPR Cookie Consent Banner -->
   <div id="cookieConsent" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;background:#1f2937;color:#fff;padding:16px 24px;font-size:14px;">
@@ -618,17 +971,11 @@
       });
     }
 
-    // ── Waitlist Form Handler ──
-    var WORKER_URL = 'https://flipzy-mailerlite-proxy.valerogian.workers.dev';
+    // ── Shared form submission handler ──
+    var WORKER_URL = 'https://flipzy-mailerlite-proxy.valerogian.workers.dev/subscribe';
 
-    document.getElementById('waitlistForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      var form = e.target;
-      var btn = document.getElementById('waitlistBtn');
-      var msg = document.getElementById('waitlistMsg');
-      var name = form.querySelector('input[name="name"]').value.trim();
+    function handleFormSubmit(form, btn, msg) {
       var email = form.querySelector('input[name="email"]').value.trim();
-
       if (!email) return;
 
       btn.disabled = true;
@@ -641,7 +988,6 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: email,
-          name: name,
           fields: {
             utm_source: form.querySelector('input[name="utm_source"]').value,
             utm_medium: form.querySelector('input[name="utm_medium"]').value,
@@ -662,7 +1008,7 @@
         // GA4 events
         if (typeof gtag === 'function') {
           gtag('event', 'form_submission', {
-            form_id: 'waitlistForm',
+            form_id: form.id,
             form_name: 'Flipzy Waitlist',
             form_destination: WORKER_URL
           });
@@ -676,9 +1022,59 @@
         msg.textContent = 'Something went wrong. Please try again.';
         msg.style.color = '#ef4444';
         btn.disabled = false;
-        btn.textContent = 'Join the waitlist';
+        btn.textContent = 'Get Early Access';
       });
+    }
+
+    // ── Hero Form Handler ──
+    document.getElementById('heroForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      handleFormSubmit(
+        e.target,
+        document.getElementById('heroBtn'),
+        document.getElementById('heroMsg')
+      );
     });
+
+    // ── Bottom Waitlist Form Handler ──
+    document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      handleFormSubmit(
+        e.target,
+        document.getElementById('waitlistBtn'),
+        document.getElementById('waitlistMsg')
+      );
+    });
+
+    // ── Sticky Mobile CTA: hide when hero form or bottom CTA is visible ──
+    (function() {
+      if (!('IntersectionObserver' in window)) return;
+      var sticky = document.getElementById('stickyMobileCta');
+      var heroForm = document.querySelector('.hero-form-wrap');
+      var bottomCta = document.getElementById('waitlist');
+      var heroVisible = false;
+      var ctaVisible = false;
+
+      function updateSticky() {
+        if (heroVisible || ctaVisible) {
+          sticky.style.display = 'none';
+        } else {
+          // Only show on mobile (CSS handles display:none on desktop)
+          sticky.style.display = '';
+        }
+      }
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.target === heroForm) heroVisible = entry.isIntersecting;
+          if (entry.target === bottomCta) ctaVisible = entry.isIntersecting;
+        });
+        updateSticky();
+      }, { threshold: 0.1 });
+
+      observer.observe(heroForm);
+      observer.observe(bottomCta);
+    })();
   </script>
 </body>
 </html>
